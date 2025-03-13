@@ -1,14 +1,14 @@
 <?php
 include 'Mahasiswa.php';
 
-session_start(); // Start session
+session_start(); 
 
-// Initialize session array if not set
+
 if (!isset($_SESSION['mahasiswa_list'])) {
     $_SESSION['mahasiswa_list'] = [];
 }
 
-// Handle form submission (Add Student)
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $nim = $_POST['nim'] ?? '';
     $nama = $_POST['nama'] ?? '';
@@ -17,14 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $mahasiswa = new Mahasiswa();
         $mahasiswa->setData($nim, $nama);
 
-        // Store new student object in session array
+
         $_SESSION['mahasiswa_list'][] = serialize($mahasiswa);
     }
 }
 
-// Handle reset (Clear Data)
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset'])) {
-    $_SESSION['mahasiswa_list'] = []; // Clear stored students
+    $_SESSION['mahasiswa_list'] = []; 
 }
 ?>
 
